@@ -7,9 +7,13 @@ class DictionarySource(WordsSources):
         self.file_name = fileName
         self.file = open(fileName, "r")
 
-    def __delattr__(self):
+    def __exit__(self, ex_type, ex_code, traceback):
         if self.file.opened:
-            self.file.close()
+            self.file.close
 
     def Next(self):
         """ :: Gets the next line of the opened file :: """
+        line = self.file.readline(-1)
+        if line == '':
+            return None
+        return line[:-1]
