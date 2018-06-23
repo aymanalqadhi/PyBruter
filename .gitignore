@@ -1,2 +1,6 @@
 # ignore PyC files
-*.pycgu
+*.pyc
+
+
+.vscode
+.vscode/*
