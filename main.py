@@ -15,20 +15,26 @@ src = RandomNumbersSource(args.length)
 start_time = time()
 tries = 0
 
+import re
+
 while True:
     v = args.prefix + str(src.Next()) + args.suffix
     tries += 1
 
     stdout.write('\r\t Current Entry [ %s ] Try #%s, %s Elapsed' % (colored(str(v), 'cyan', attrs=['bold']), colored(tries, 'yellow'), colored('%ds' % (time() - start_time), 'yellow')))
     stdout.flush()
-
+    
     ret = ''
-    if args.post:
-        ret = http.make_request(url, data=data)
-    else:
-        ret = http.make_request(url + '?' + data.replace('?', str(v)))
+    try:
+        if args.post:
+            ret = http.make_request(url, data=data)
+        else:
+            ret = http.make_request(url + '?' + data.replace('?', str(v)))
+    except:
+        ret = ''
 
-    if 'var error' not in ret: #not fpatt.match(ret) or spatt.match(ret):
+    # print 
+    if  fpatt.search(ret) == None and spatt.search(ret) != None:
         print ('\n\n\t   ' + '-' * 40)
         print ('\n\t\t   --<( %s )>--' % colored('Match Found!', 'green', attrs=['bold']))
         print ('\n\t\t     * Value: %s' % colored(' ' + str(v) + ' ', 'cyan', attrs=['bold', 'reverse']))

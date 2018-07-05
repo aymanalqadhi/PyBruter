@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser(description='Starts an http/https attack using 
 parser.add_argument('url', help='url to start attack on', type=valid_url)
 parser.add_argument('-d', '--data', help='The data to try on, ? for the unknown parameter')
 parser.add_argument('--delay', help='The data to try on, ? for the unknown parameter', default=0, type=int)
-parser.add_argument('-f', '--fpattern', help='A Pattern to check each response on and continue if it matches', default=r'var error')
+parser.add_argument('-f', '--fpattern', help='A Pattern to check each response on and continue if it matches', default='var error')
 parser.add_argument('-s', '--spattern', help='A Pattern to check each response on and continue if it does not matches', default='')
 
 parser.add_argument('--post', help='Use HTTP POST requests')
@@ -39,7 +39,8 @@ elif str(data).find('?') == -1:
         data += '&'
     data += 'username=?'
 
-fpatt = re.compile(args.fpattern)
-spatt = re.compile(args.spattern)
+
+fpatt = re.template(args.fpattern)
+spatt = re.template(args.spattern)
 
 http = http.HttpManager()
