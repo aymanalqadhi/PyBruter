@@ -23,19 +23,19 @@ while True:
 
     stdout.write('\r\t Current Entry [ %s ] Try #%s, %s Elapsed' % (colored(str(v), 'cyan', attrs=['bold']), colored(tries, 'yellow'), colored('%ds' % (time() - start_time), 'yellow')))
     stdout.flush()
-    
+
     ret = ''
     try:
         if args.post:
-            ret = http.make_request(url, data=data)
+            ret = http.make_request(url, data=data.replace('?', str(v)))
         else:
             ret = http.make_request(url + '?' + data.replace('?', str(v)))
     except:
         ret = ''
 
-    # print 
+    # print ret
     if  fpatt.search(ret) == None and spatt.search(ret) != None:
-        print ('\n\n\t   ' + '-' * 40)
+	print ('\n\n\t   ' + '-' * 40)
         print ('\n\t\t   --<( %s )>--' % colored('Match Found!', 'green', attrs=['bold']))
         print ('\n\t\t     * Value: %s' % colored(' ' + str(v) + ' ', 'cyan', attrs=['bold', 'reverse']))
         print ('\t\t     * Total Tries: %s\n' % colored(str(tries), 'yellow', attrs=['bold']))
