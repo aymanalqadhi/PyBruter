@@ -1,4 +1,4 @@
-from source import WordsSources
+from bruter.sources.source import WordsSources
 
 class DictionarySource(WordsSources):
     """ :: Gets the words from a dictionary :: """

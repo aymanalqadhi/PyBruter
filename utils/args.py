@@ -1,4 +1,4 @@
-import http
+from utils.http import HttpManager
 
 import argparse
 import re
@@ -8,7 +8,7 @@ def valid_url(s, pat = re.compile(r'^((http|https|ftp)\://)([a-zA-Z0-9\.\-]+(\:[
         raise argparse.ArgumentTypeError
     return s
 
-parser = argparse.ArgumentParser(description='Starts an http/https attack using bruteforce/dictionary-based methods.', version='1.0 BETA')
+parser = argparse.ArgumentParser(description='Starts an http/https attack using bruteforce/dictionary-based methods.')
 
 parser.add_argument('url', help='url to start attack on', type=valid_url)
 parser.add_argument('-d', '--data', help='The data to try on, ? for the unknown parameter')
@@ -43,4 +43,4 @@ elif str(data).find('?') == -1:
 fpatt = re.template(args.fpattern)
 spatt = re.template(args.spattern)
 
-http = http.HttpManager()
+http = HttpManager()

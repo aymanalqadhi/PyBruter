@@ -35,7 +35,7 @@ while True:
 
     # print ret
     if  fpatt.search(ret) == None and spatt.search(ret) != None:
-	print ('\n\n\t   ' + '-' * 40)
+        print ('\n\n\t   ' + '-' * 40)
         print ('\n\t\t   --<( %s )>--' % colored('Match Found!', 'green', attrs=['bold']))
         print ('\n\t\t     * Value: %s' % colored(' ' + str(v) + ' ', 'cyan', attrs=['bold', 'reverse']))
         print ('\t\t     * Total Tries: %s\n' % colored(str(tries), 'yellow', attrs=['bold']))

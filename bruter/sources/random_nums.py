@@ -1,4 +1,4 @@
-from source import WordsSources
+from bruter.sources.source import WordsSources
 from math import floor, log10, pow
 from random import randint
 
