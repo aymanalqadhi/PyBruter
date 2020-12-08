@@ -30,8 +30,8 @@ while True:
             ret = http.make_request(url, data=data.replace('?', str(v)))
         else:
             ret = http.make_request(url + '?' + data.replace('?', str(v)))
-    except:
-        ret = ''
+    except Exception as x:
+        continue;
 
     # print ret
     if  fpatt.search(ret) == None and spatt.search(ret) != None:
