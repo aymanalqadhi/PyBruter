@@ -1,4 +1,4 @@
-from sources.random_nums import RandomNumbersSource
+from bruter.sources.random_nums import RandomNumbersSource
 
 class Bruter():
     """ Brute Forcing Class """
