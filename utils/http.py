@@ -5,4 +5,8 @@ class HttpManager():
 
     def make_request(self, url, data = None):
         """ Invokes an HTTP GET request """
-        return requests.get(url).text
+        resp = requests.get(url)
+        ret = resp.text
+        resp.close()
+
+        return ret
